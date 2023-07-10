@@ -1,6 +1,5 @@
 package com.example.springbootblogrestapi.controller;
 
-import com.example.springbootblogrestapi.entity.Post;
 import com.example.springbootblogrestapi.payload.PostDTO;
 import com.example.springbootblogrestapi.service.PostService;
 import org.springframework.http.HttpStatus;
@@ -12,7 +11,7 @@ import java.util.List;
 @RestController
 @RequestMapping("api/posts")
 public class PostController {
-    private PostService postService;
+    private final PostService postService;
 
     public PostController(PostService postService) {
         this.postService = postService;
