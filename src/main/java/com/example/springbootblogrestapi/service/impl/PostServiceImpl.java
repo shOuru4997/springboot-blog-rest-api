@@ -6,6 +6,8 @@ import com.example.springbootblogrestapi.repository.PostRepository;
 import com.example.springbootblogrestapi.service.PostService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @AllArgsConstructor
@@ -18,6 +20,12 @@ public class PostServiceImpl implements PostService {
         Post post = mapToEntity(postDTO);
         Post newPost = postRepository.save(post);
         return mapToDto(newPost);
+    }
+
+    @Override
+    public List<PostDTO> getAllPosts() {
+        List<Post> posts = postRepository.findAll();
+        return posts.stream().map(this::mapToDto).collect(Collectors.toList());
     }
 
     // Convert Entity into DTO
